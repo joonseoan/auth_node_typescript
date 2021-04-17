@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Error } from 'mongoose';
+import { CallbackError, Error } from 'mongoose';
 import User from '../models/';
 
 export const authentication = (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ export const authentication = (req: Request, res: Response, next: NextFunction) 
   }
 
 
-  User.findOne({ email }, (err: Error, existingUser: {email: string, password: string}) => {
+  User.findOne({ email }, (err: CallbackError, existingUser: {email: string, password: string}) => {
     if (err) {
       return next(err);
     }
@@ -26,7 +26,7 @@ export const authentication = (req: Request, res: Response, next: NextFunction) 
       password,
     });
 
-    user.save((err: Error) => {
+    user.save((err: CallbackError) => {
       if(err) {
         return next(err);
       }
