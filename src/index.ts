@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 
+import './services/passport';
 import router from './router';
 
 const app = express();
@@ -13,6 +14,7 @@ const mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstData
 // morgan is log in terminal about incoming request
 app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' }));
+
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);

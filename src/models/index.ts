@@ -1,17 +1,14 @@
 import mongoose, { CallbackError, Model, model, Types, Schema, Document } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
-interface UserSchema extends Document {
-  email: {
-    type: String,
-    unique: boolean,
-    lowercase: boolean,
-  };
+export interface UserSchema extends Document {
+  email: string;
   password: string;
+  _id?: string;
 }
 
 // Define our model
-const userSchema = new Schema<UserSchema>({
+export const userSchema = new Schema<UserSchema>({
   email: {
     type: String,
     unique: true,
@@ -40,7 +37,19 @@ userSchema.pre<UserSchema>('save', function (this: UserSchema, next: (err?: Call
       next();
     });
   });
-})
+});
+
+// it is used as a middleware only when instance is created
+userSchema.methods.comparePassword = function(candidatePassword: string, callback: (err: Error | null, isMatch?: boolean) => void) {
+  
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) {
+      return callback(err);
+    }
+
+    callback(null, isMatch);
+  });
+}
 
 // create model class
 const ModelClass = mongoose.model<UserSchema>('user', userSchema);

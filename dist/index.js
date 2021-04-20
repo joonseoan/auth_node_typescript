@@ -8,6 +8,7 @@ var http_1 = __importDefault(require("http"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var morgan_1 = __importDefault(require("morgan"));
 var mongoose_1 = __importDefault(require("mongoose"));
+require("./services/passport");
 var router_1 = __importDefault(require("./router"));
 var app = express_1.default();
 var mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

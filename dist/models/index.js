@@ -22,9 +22,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.userSchema = void 0;
 var mongoose_1 = __importStar(require("mongoose"));
 var bcrypt_nodejs_1 = __importDefault(require("bcrypt-nodejs"));
-var userSchema = new mongoose_1.Schema({
+exports.userSchema = new mongoose_1.Schema({
     email: {
         type: String,
         unique: true,
@@ -32,7 +33,7 @@ var userSchema = new mongoose_1.Schema({
     },
     password: String,
 });
-userSchema.pre('save', function (next) {
+exports.userSchema.pre('save', function (next) {
     var user = this;
     bcrypt_nodejs_1.default.genSalt(10, function (err, salt) {
         if (err) {
@@ -47,5 +48,13 @@ userSchema.pre('save', function (next) {
         });
     });
 });
-var ModelClass = mongoose_1.default.model('user', userSchema);
+exports.userSchema.methods.comparePassword = function (candidatePassword, callback) {
+    bcrypt_nodejs_1.default.compare(candidatePassword, this.password, function (err, isMatch) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, isMatch);
+    });
+};
+var ModelClass = mongoose_1.default.model('user', exports.userSchema);
 exports.default = ModelClass;

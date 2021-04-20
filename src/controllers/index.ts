@@ -1,17 +1,27 @@
+import jwt from 'jwt-simple';
 import { NextFunction, Request, Response } from 'express';
-import { CallbackError, Error } from 'mongoose';
-import User from '../models/';
+import { CallbackError } from 'mongoose';
 
-export const authentication = (req: Request, res: Response, next: NextFunction) => {
+import User, { UserSchema } from '../models/';
+import { Config } from '../config/config';
 
+function tokenForUser (user: UserSchema) {
+  return jwt.encode({
+      sub: user._id,
+      iat: new Date().getTime() 
+    },
+    Config.secret,
+  );
+};
+
+export const signup = (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
   
   if (!email || !password) {
     return res.status(422).send({ err: 'You must provide email and password' });
   }
 
-
-  User.findOne({ email }, (err: CallbackError, existingUser: {email: string, password: string}) => {
+  User.findOne({ email }, (err: CallbackError, existingUser: UserSchema) => {
     if (err) {
       return next(err);
     }
@@ -26,12 +36,13 @@ export const authentication = (req: Request, res: Response, next: NextFunction) 
       password,
     });
 
+    console.log('user: ---> ', user)
+
     user.save((err: CallbackError) => {
       if(err) {
         return next(err);
       }
-
-      res.json({ success: true });
+      res.json({ token: tokenForUser(user) });
     });
   });
 }
