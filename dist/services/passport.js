@@ -17,6 +17,15 @@ var localLogin = new passport_local_1.Strategy({ usernameField: 'email' }, funct
         if (!user) {
             return done(null, false);
         }
+        user.comparePassword(password, function (err, isMatch) {
+            if (err) {
+                return done(err);
+            }
+            if (!isMatch) {
+                return done(null, false);
+            }
+            return done(null, user);
+        });
     });
 });
 var jwtOptions = {
@@ -37,3 +46,4 @@ var jwtLogin = new passport_jwt_1.Strategy(jwtOptions, function (payload, done) 
     });
 });
 passport_1.default.use(jwtLogin);
+passport_1.default.use(localLogin);

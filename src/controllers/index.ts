@@ -36,8 +36,6 @@ export const signup = (req: Request, res: Response, next: NextFunction) => {
       password,
     });
 
-    console.log('user: ---> ', user)
-
     user.save((err: CallbackError) => {
       if(err) {
         return next(err);
@@ -45,4 +43,12 @@ export const signup = (req: Request, res: Response, next: NextFunction) => {
       res.json({ token: tokenForUser(user) });
     });
   });
-}
+};
+
+export const signin = (req: Request, res: Response, next: NextFunction) => {
+  if (req.user) {
+    res.send({ token: tokenForUser(req.user as UserSchema) });
+  } else {
+    res.send({ errorMessage: 'something is wrong.' });
+  }
+};

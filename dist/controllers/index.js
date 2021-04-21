@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signup = void 0;
+exports.signin = exports.signup = void 0;
 var jwt_simple_1 = __importDefault(require("jwt-simple"));
 var models_1 = __importDefault(require("../models/"));
 var config_1 = require("../config/config");
@@ -30,7 +30,6 @@ var signup = function (req, res, next) {
             email: email,
             password: password,
         });
-        console.log('user: ---> ', user);
         user.save(function (err) {
             if (err) {
                 return next(err);
@@ -40,3 +39,12 @@ var signup = function (req, res, next) {
     });
 };
 exports.signup = signup;
+var signin = function (req, res, next) {
+    if (req.user) {
+        res.send({ token: tokenForUser(req.user) });
+    }
+    else {
+        res.send({ errorMessage: 'something is wrong.' });
+    }
+};
+exports.signin = signin;

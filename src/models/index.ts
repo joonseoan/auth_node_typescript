@@ -5,6 +5,7 @@ export interface UserSchema extends Document {
   email: string;
   password: string;
   _id?: string;
+  comparePassword: (password: string, callback: Function) => void;
 }
 
 // Define our model
@@ -40,7 +41,10 @@ userSchema.pre<UserSchema>('save', function (this: UserSchema, next: (err?: Call
 });
 
 // it is used as a middleware only when instance is created
-userSchema.methods.comparePassword = function(candidatePassword: string, callback: (err: Error | null, isMatch?: boolean) => void) {
+userSchema.methods.comparePassword = function(
+  candidatePassword: string,
+  callback: Function,
+) {
   
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) {

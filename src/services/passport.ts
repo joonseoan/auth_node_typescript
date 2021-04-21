@@ -2,7 +2,7 @@ import passport from 'passport';
 import User, { UserSchema } from '../models';
 import { Config } from '../config/config';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import { CallbackError, Model, Schema } from 'mongoose';
+import { CallbackError, Model, Query, Schema } from 'mongoose';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 export interface JwtPayload {
@@ -16,7 +16,7 @@ const localLogin = new LocalStrategy(
   { usernameField: 'email' },
   (email, password, done) => {
 
-    User.findOne({ email }, (err: CallbackError, user: Model<UserSchema>) => {
+    User.findOne({ email }, (err: CallbackError, user: UserSchema) => {
       if (err) {
         return done(err);
       }
@@ -26,17 +26,20 @@ const localLogin = new LocalStrategy(
         return done(null, false);
       }
 
-      // user.comparePassword(password, function() {
+      user.comparePassword(password, function(err: Error, isMatch: boolean) {
+        if (err) {
+          return done(err);
+        }
 
-      // });
+        if (!isMatch) {
+          return done(null, false);
+        }
 
+        return done(null, user);
+      });
     });
 
 });
-
-
-
-
 
 // --------------------------- After Signup --------------
 const jwtOptions = {
@@ -65,3 +68,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload: JwtPayload, done)
 });
 
 passport.use(jwtLogin);
+passport.use(localLogin);
