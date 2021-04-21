@@ -1,6 +1,6 @@
 module.exports = {
   // root directory
-  roots: ['<rootDir>src/test'],
+  roots: ['<rootDir>src/itest'],
   transform: {
     // .ts and tsx file to ts.jest
     '^.+\\.tsx?$': 'ts-jest'
