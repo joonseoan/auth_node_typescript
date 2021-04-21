@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:build": "tsc -w",
-    "start:run": "nodemon dist/index.js",
+    "start:run": "nodemon dist/app/index.js",
     "start": "concurrently npm:start:*",
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node src/app/index.ts",
     "test": "jest"
   },
   "keywords": [],
