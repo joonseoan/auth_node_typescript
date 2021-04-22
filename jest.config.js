@@ -1,11 +1,17 @@
 module.exports = {
   // root directory
-  roots: ['<rootDir>src/itest'],
+  roots: ['<rootDir>src/test'],
   transform: {
     // .ts and tsx file to ts.jest
     '^.+\\.tsx?$': 'ts-jest'
   },
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json"
+    }
+  },
   testRegex: '(/__test__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
+  testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   verbose: true,
   collectCoverage: true,

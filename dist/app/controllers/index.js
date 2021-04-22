@@ -14,7 +14,7 @@ function tokenForUser(user) {
     }, config_1.Config.secret);
 }
 ;
-var signup = function (req, res, next) {
+exports.signup = function (req, res, next) {
     var _a = req.body, email = _a.email, password = _a.password;
     if (!email || !password) {
         return res.status(422).send({ err: 'You must provide email and password' });
@@ -38,8 +38,7 @@ var signup = function (req, res, next) {
         });
     });
 };
-exports.signup = signup;
-var signin = function (req, res, next) {
+exports.signin = function (req, res, next) {
     if (req.user) {
         res.send({ token: tokenForUser(req.user) });
     }
@@ -47,4 +46,3 @@ var signin = function (req, res, next) {
         res.send({ errorMessage: 'something is wrong.' });
     }
 };
-exports.signin = signin;

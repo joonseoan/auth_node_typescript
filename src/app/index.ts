@@ -15,12 +15,11 @@ const mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstData
 app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' }));
 
-
-mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.connect(mongoURI, {
-  useUnifiedTopology: true,
+  useUnifiedTopology: false,
+  useNewUrlParser: true,
 });
 
 router(app);

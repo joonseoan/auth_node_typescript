@@ -16,11 +16,11 @@ exports.app = app;
 var mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 app.use(morgan_1.default('combined'));
 app.use(body_parser_1.default.json({ type: '*/*' }));
-mongoose_1.default.set('useNewUrlParser', true);
 mongoose_1.default.set('useFindAndModify', false);
 mongoose_1.default.set('useCreateIndex', true);
 mongoose_1.default.connect(mongoURI, {
-    useUnifiedTopology: true,
+    useUnifiedTopology: false,
+    useNewUrlParser: true,
 });
 router_1.default(app);
 var port = process.env.PORT || 3090;

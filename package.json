@@ -8,8 +8,7 @@
     "start:run": "nodemon dist/app/index.js",
     "start": "concurrently npm:start:*",
     "dev": "ts-node src/app/index.ts",
-    "test": "jest",
-    "itest": "jest --config jest.config.itest.js"
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
