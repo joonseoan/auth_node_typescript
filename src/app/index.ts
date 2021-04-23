@@ -18,7 +18,7 @@ app.use(bodyParser.json({ type: '*/*' }));
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.connect(mongoURI, {
-  useUnifiedTopology: false,
+  useUnifiedTopology: true,
   useNewUrlParser: true,
 });
 

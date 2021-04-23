@@ -19,7 +19,7 @@ app.use(body_parser_1.default.json({ type: '*/*' }));
 mongoose_1.default.set('useFindAndModify', false);
 mongoose_1.default.set('useCreateIndex', true);
 mongoose_1.default.connect(mongoURI, {
-    useUnifiedTopology: false,
+    useUnifiedTopology: true,
     useNewUrlParser: true,
 });
 router_1.default(app);

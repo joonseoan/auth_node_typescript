@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.92% </span>
+                <span class="strong">84.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/26</span>
+                <span class='fraction'>22/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.73% </span>
+                <span class="strong">81.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/22</span>
+                <span class='fraction'>18/22</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,7 +118,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,39 +127,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,8 +170,8 @@ import { CallbackError } from 'mongoose';
 import User, { UserSchema } from '../models/';
 import { Config } from '../config/config';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >tokenForUser </span>(user: UserSchema) {
-<span class="cstat-no" title="statement not covered" >  return jwt.encode({</span>
+function tokenForUser (user: UserSchema) {
+  return jwt.encode({
       sub: user._id,
       iat: new Date().getTime() 
     },
@@ -179,40 +179,40 @@ function <span class="fstat-no" title="function not covered" >tokenForUser </spa
   );
 };
 &nbsp;
-export const signup = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response, next: NextFunction) =&gt; {
-  const { email<span class="cstat-no" title="statement not covered" >, p</span>assword<span class="cstat-no" title="statement not covered" > } = <span class="cstat-no" title="statement not covered" >r</span>eq.body;</span>
+export const signup = (req: Request, res: Response, next: NextFunction) =&gt; {
+  const { email, password } = req.body;
   
-<span class="cstat-no" title="statement not covered" >  if (!email || !password) {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!email || !password) {
 <span class="cstat-no" title="statement not covered" >    return res.status(422).send({ err: 'You must provide email and password' });</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  User.findOne({ email }, <span class="fstat-no" title="function not covered" >(e</span>rr: CallbackError, existingUser: UserSchema) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+  User.findOne({ email }, (err: CallbackError, existingUser: UserSchema) =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >      return next(err);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (existingUser) {</span>
+    if (existingUser) {
       // unprocessible entity
-<span class="cstat-no" title="statement not covered" >      return res.status(422).send({ error: 'Email is in use' });</span>
+      return res.status(422).send({ error: 'Email is in use' });
     }
 &nbsp;
-    const user = <span class="cstat-no" title="statement not covered" >new User({</span>
+    const user = new User({
       email,
       password,
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    user.save(<span class="fstat-no" title="function not covered" >(e</span>rr: CallbackError) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if(err) {</span>
+    user.save((err: CallbackError) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if(err) {
 <span class="cstat-no" title="statement not covered" >        return next(err);</span>
       }
-<span class="cstat-no" title="statement not covered" >      res.json({ token: tokenForUser(user) });</span>
+      res.json({ token: tokenForUser(user) });
     });
   });
 };
 &nbsp;
-export const signin = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response, next: NextFunction) =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (req.user) {</span>
-<span class="cstat-no" title="statement not covered" >    res.send({ token: tokenForUser(req.user as UserSchema) });</span>
+export const signin = (req: Request, res: Response, next: NextFunction) =&gt; {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (req.user) {
+    res.send({ token: tokenForUser(req.user as UserSchema) });
   } else {
 <span class="cstat-no" title="statement not covered" >    res.send({ errorMessage: 'something is wrong.' });</span>
   }
@@ -223,7 +223,7 @@ export const signin = <span class="fstat-no" title="function not covered" >(r</s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 21 2021 22:51:11 GMT-0400 (Eastern Daylight Time)
+                at Thu Apr 22 2021 22:21:00 GMT-0400 (Eastern Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

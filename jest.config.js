@@ -5,11 +5,7 @@ module.exports = {
     // .ts and tsx file to ts.jest
     '^.+\\.tsx?$': 'ts-jest'
   },
-  "globals": {
-    "ts-jest": {
-      "tsconfig": "tsconfig.json"
-    }
-  },
+  preset: "@shelf/jest-mongodb",
   testRegex: '(/__test__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

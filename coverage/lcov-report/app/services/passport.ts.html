@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.04% </span>
+                <span class="strong">88.89% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/27</span>
+                <span class='fraction'>24/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>9/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.04% </span>
+                <span class="strong">88.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/27</span>
+                <span class='fraction'>24/27</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -145,26 +145,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,17 +181,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,28 +213,28 @@ export interface JwtPayload {
 // ----------------------- Login Strategy ------------------
 const localLogin = new LocalStrategy(
   { usernameField: 'email' },
-<span class="fstat-no" title="function not covered" >  (e</span>mail, password, done) =&gt; {
+  (email, password, done) =&gt; {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    User.findOne({ email }, <span class="fstat-no" title="function not covered" >(e</span>rr: CallbackError, user: UserSchema) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (err) {</span>
+    User.findOne({ email }, (err: CallbackError, user: UserSchema) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >        return done(err);</span>
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      if (!user) {</span>
+      if (!user) {
         // can't find user --&gt; login fail
-<span class="cstat-no" title="statement not covered" >        return done(null, false);</span>
+        return done(null, false);
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      user.comparePassword(password, <span class="fstat-no" title="function not covered" >function(e</span>rr: Error, isMatch: boolean) {</span>
-<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+      user.comparePassword(password, function(err: Error, isMatch: boolean) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >          return done(err);</span>
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (!isMatch) {</span>
-<span class="cstat-no" title="statement not covered" >          return done(null, false);</span>
+        if (!isMatch) {
+          return done(null, false);
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return done(null, user);</span>
+        return done(null, user);
       });
     });
 &nbsp;
@@ -250,18 +250,18 @@ const jwtOptions = {
 &nbsp;
 // [Important]
 // After analyzing JWT from header, JWT is decoded into "payload" below.!!
-const jwtLogin = new JwtStrategy(jwtOptions, <span class="fstat-no" title="function not covered" >function(p</span>ayload: JwtPayload, done) {
-<span class="cstat-no" title="statement not covered" >  User.findById(payload.sub, <span class="fstat-no" title="function not covered" >function(e</span>rr: CallbackError, user: UserSchema) {</span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+const jwtLogin = new JwtStrategy(jwtOptions, function(payload: JwtPayload, done) {
+  User.findById(payload.sub, function(err: CallbackError, user: UserSchema) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >      return done(err, false);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (user) {</span>
+    if (user) {
       // user found
-<span class="cstat-no" title="statement not covered" >      done(null, user);</span>
+      done(null, user);
     } else {
       // user not found ---&gt; unauthorized
-<span class="cstat-no" title="statement not covered" >      done(null, false);</span>
+      done(null, false);
     }
   });
 });
@@ -274,7 +274,7 @@ passport.use(localLogin);</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 21 2021 22:51:11 GMT-0400 (Eastern Daylight Time)
+                at Thu Apr 22 2021 22:21:00 GMT-0400 (Eastern Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -40,29 +40,98 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
-var app_1 = require("../app");
 var mongoose_1 = __importDefault(require("mongoose"));
+var jwt_simple_1 = __importDefault(require("jwt-simple"));
+var app_1 = require("../app");
+var config_1 = require("../app/config/config");
+var models_1 = __importDefault(require("../app/models"));
+var mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 describe('Test', function () {
+    var token;
+    var tempUser = {
+        email: 'a@afa.ca',
+        password: 'abcde',
+    };
+    beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, mongoose_1.default.connect(mongoURI, {
+                        useNewUrlParser: true,
+                    })];
+                case 1:
+                    _a.sent();
+                    supertest_1.default(app_1.app)
+                        .post('/signup')
+                        .send(tempUser)
+                        .end(function (err, response) {
+                        token = response.body.token;
+                        done();
+                    });
+                    return [2];
+            }
+        });
+    }); });
+    afterAll(function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, models_1.default.deleteMany()];
+                case 1:
+                    _a.sent();
+                    return [4, mongoose_1.default.connection.close()];
+                case 2:
+                    _a.sent();
+                    done();
+                    return [2];
+            }
+        });
+    }); });
     it('should have status 401 for unauthorized request', function (done) {
-        console.log('ddd');
         supertest_1.default(app_1.app)
             .get('/')
             .set('authorization', '')
             .expect(401)
             .end(done);
     });
-});
-beforeAll(function (done) {
-    done();
-});
-afterAll(function (done) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, mongoose_1.default.connection.close()];
-            case 1:
-                _a.sent();
-                done();
-                return [2];
-        }
+    it('should have status 401 for invalid token', function (done) {
+        var userId = mongoose_1.default.Types.ObjectId();
+        var invalidToken = jwt_simple_1.default.encode({
+            sub: userId,
+            iat: new Date().getTime()
+        }, config_1.Config.secret);
+        supertest_1.default(app_1.app)
+            .get('/')
+            .set('authorization', invalidToken)
+            .expect(401)
+            .end(done);
     });
-}); });
+    it('should have status 200 for invalid token', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, supertest_1.default(app_1.app)
+                        .get('/')
+                        .set('authorization', token)
+                        .expect(200)];
+                case 1:
+                    response = _a.sent();
+                    expect(response.body).toEqual({ hi: 'there' });
+                    return [2];
+            }
+        });
+    }); });
+    it('should make the user login', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, supertest_1.default(app_1.app)
+                        .get('/signin')
+                        .send(tempUser)
+                        .expect(201)];
+                case 1:
+                    response = _a.sent();
+                    expect(response.body.token).not.toBeUndefined();
+                    return [2];
+            }
+        });
+    }); });
+});
