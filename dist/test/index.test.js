@@ -52,6 +52,10 @@ describe('Test', function () {
         email: 'a@afa.ca',
         password: 'abcde',
     };
+    var tempUser2 = {
+        email: 'c@a.ca',
+        password: 'abcde',
+    };
     beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -119,17 +123,103 @@ describe('Test', function () {
             }
         });
     }); });
+    it('should not make the user login with invalid email', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var invalidUser, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    invalidUser = {
+                        email: 'b@afa.ca',
+                        password: 'abcde',
+                    };
+                    return [4, supertest_1.default(app_1.app)
+                            .post('/signin')
+                            .send(invalidUser)
+                            .expect(401)];
+                case 1:
+                    response = _a.sent();
+                    return [2];
+            }
+        });
+    }); });
+    it('should not make the user login with invalid password', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var invalidUser, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    invalidUser = {
+                        email: 'a@afa.ca',
+                        password: 'abcdee',
+                    };
+                    return [4, supertest_1.default(app_1.app)
+                            .post('/signin')
+                            .send(invalidUser)
+                            .expect(401)];
+                case 1:
+                    response = _a.sent();
+                    return [2];
+            }
+        });
+    }); });
     it('should make the user login', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, supertest_1.default(app_1.app)
-                        .get('/signin')
+                        .post('/signin')
                         .send(tempUser)
-                        .expect(201)];
+                        .expect(200)];
                 case 1:
                     response = _a.sent();
-                    expect(response.body.token).not.toBeUndefined();
+                    expect(response.body.token).not.toBeFalsy();
+                    return [2];
+            }
+        });
+    }); });
+    it('should not make the same user signup', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, supertest_1.default(app_1.app)
+                        .post('/signup')
+                        .send(tempUser)
+                        .expect(422)];
+                case 1:
+                    response = _a.sent();
+                    return [2];
+            }
+        });
+    }); });
+    it('should not make the same user signup', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, supertest_1.default(app_1.app)
+                        .post('/signup')
+                        .send(tempUser)
+                        .expect(422)];
+                case 1:
+                    response = _a.sent();
+                    return [2];
+            }
+        });
+    }); });
+    it('should make the user signup', function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        var response, user;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, supertest_1.default(app_1.app)
+                        .post('/signup')
+                        .send(tempUser2)
+                        .expect(200)];
+                case 1:
+                    response = _a.sent();
+                    expect(response.body.token).not.toBeFalsy();
+                    return [4, models_1.default.findOne({ email: tempUser2.email })];
+                case 2:
+                    user = _a.sent();
+                    expect(user).not.toBeNull();
+                    done();
                     return [2];
             }
         });

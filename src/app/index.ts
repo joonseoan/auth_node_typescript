@@ -3,6 +3,7 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import './services/passport';
 import router from './router';
@@ -13,6 +14,7 @@ const mongoURI = 'mongodb+srv://joon:1111@cluster0.bffbk.mongodb.net/myFirstData
 
 // morgan is log in terminal about incoming request
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 
 mongoose.set('useFindAndModify', false);
